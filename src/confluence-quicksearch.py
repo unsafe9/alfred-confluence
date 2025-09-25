@@ -7,6 +7,7 @@ import re
 import requests
 import sys
 import urllib
+import unicodedata
 
 
 
@@ -30,6 +31,7 @@ def parse_args():
     
     args = parser.parse_args()
     
+    args.text = [unicodedata.normalize('NFC', text) for text in args.text]
     args.text_as_string = " ".join(args.text)
 
     args.url = validate_url(args)
